@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { Search } from 'lucide-react';
+import { Search, PanelLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -24,29 +24,10 @@ export default function Header({ activeView }: { activeView: View }) {
 
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-      <div className="md:hidden">
-        <SidebarTrigger asChild>
-          <Button size="icon" variant="outline">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-5 w-5"
-            >
-              <line x1="3" x2="21" y1="6" y2="6" />
-              <line x1="3" x2="21" y1="12" y2="12" />
-              <line x1="3" x2="21" y1="18" y2="18" />
-            </svg>
-            <span className="sr-only">Toggle Menu</span>
-          </Button>
-        </SidebarTrigger>
-      </div>
+      <SidebarTrigger className="md:hidden" variant="outline" size="icon">
+        <PanelLeft className="h-5 w-5" />
+        <span className="sr-only">Toggle Menu</span>
+      </SidebarTrigger>
 
       <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0 font-headline">
         {viewTitles[activeView]}
