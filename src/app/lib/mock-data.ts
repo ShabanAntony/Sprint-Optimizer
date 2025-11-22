@@ -15,11 +15,11 @@ export type Risk = {
   probability: 'Low' | 'Medium' | 'High';
   impact: 'Low' | 'Medium' | 'High';
   priority: 'Low' | 'Medium' | 'High' | 'Critical';
-  fallbackPlan?: 'Plan B' | 'Plan C';
+  fallbackScenario?: 'Scenario B' | 'Scenario C';
   tags: string[];
 };
 
-export type Plan = {
+export type Scenario = {
   id: 'A' | 'B' | 'C';
   name: string;
   includedTasks: string[];
@@ -35,7 +35,7 @@ export type RiskTemplate = {
 };
 
 const allRisks: Risk[] = [
-  { id: 'r1', name: 'Design Dependency', description: 'Blocked by final design approval.', probability: 'Medium', impact: 'High', priority: 'High', tags: ['Dependency'], fallbackPlan: 'Plan B' },
+  { id: 'r1', name: 'Design Dependency', description: 'Blocked by final design approval.', probability: 'Medium', impact: 'High', priority: 'High', tags: ['Dependency'], fallbackScenario: 'Scenario B' },
   { id: 'r2', name: 'Backend Dependency', description: 'Requires new endpoint from the backend team.', probability: 'High', impact: 'High', priority: 'Critical', tags: ['Dependency'] },
   { id: 'r3', name: 'Technical Uncertainty', description: 'Involves a new library with a steep learning curve.', probability: 'Medium', impact: 'Medium', priority: 'Medium', tags: ['Technical'] },
   { id: 'r4', name: 'Scope Creep', description: 'Stakeholder might add more requirements.', probability: 'Low', impact: 'High', priority: 'Medium', tags: ['Scope'] },
@@ -52,22 +52,22 @@ export const allTasks: Task[] = [
   { id: 'DOC-10', title: 'Update API documentation', sp: 2, status: 'To Do', epic: 'Infrastructure', priority: 'Low', risks: [] },
 ];
 
-export const plans: Plan[] = [
+export const scenarios: Scenario[] = [
   {
     id: 'A',
-    name: 'Plan A (Ambitious)',
+    name: 'Scenario A (Ambitious)',
     includedTasks: ['UI-123', 'BE-144', 'UI-121', 'UX-201', 'FE-312', 'BE-150', 'QA-50', 'DOC-10'],
     excludedTasks: [],
   },
   {
     id: 'B',
-    name: 'Plan B (Balanced)',
+    name: 'Scenario B (Balanced)',
     includedTasks: ['UI-123', 'BE-144', 'FE-312', 'QA-50'],
     excludedTasks: ['UI-121', 'UX-201', 'BE-150', 'DOC-10'],
   },
   {
     id: 'C',
-    name: 'Plan C (Safe)',
+    name: 'Scenario C (Safe)',
     includedTasks: ['UI-123', 'FE-312', 'QA-50'],
     excludedTasks: ['BE-144', 'UI-121', 'UX-201', 'BE-150', 'DOC-10'],
   },
@@ -86,10 +86,10 @@ export const riskTemplates: RiskTemplate[] = [
 
 export const comparisonData = {
   metrics: ['Story Points', 'Issues', 'Epics covered', 'Critical risks'],
-  plans: {
-    'Plan A': { 'Story Points': 58, 'Issues': 8, 'Epics covered': 7, 'Critical risks': 4, 'Excluded issues': [] },
-    'Plan B': { 'Story Points': 41, 'Issues': 4, 'Epics covered': 5, 'Critical risks': 2, 'Excluded issues': ['UI-121', 'UX-201'] },
-    'Plan C': { 'Story Points': 32, 'Issues': 3, 'Epics covered': 4, 'Critical risks': 1, 'Excluded issues': ['UI-121', 'UX-201', 'BE-150'] },
+  scenarios: {
+    'Scenario A': { 'Story Points': 58, 'Issues': 8, 'Epics covered': 7, 'Critical risks': 4, 'Excluded issues': [] },
+    'Scenario B': { 'Story Points': 41, 'Issues': 4, 'Epics covered': 5, 'Critical risks': 2, 'Excluded issues': ['UI-121', 'UX-201'] },
+    'Scenario C': { 'Story Points': 32, 'Issues': 3, 'Epics covered': 4, 'Critical risks': 1, 'Excluded issues': ['UI-121', 'UX-201', 'BE-150'] },
   },
 };
 

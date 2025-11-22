@@ -5,16 +5,16 @@ import { SidebarProvider, Sidebar, SidebarInset } from "@/components/ui/sidebar"
 import Header from "@/components/header";
 import SidebarNav from "@/components/sidebar-nav";
 import DashboardView from "@/components/dashboard-view";
-import PlansView from "@/components/plans-view";
+import ScenariosView from "@/components/scenarios-view";
 import RiskTemplatesView from "@/components/risk-templates-view";
 import ScenarioComparisonView from "@/components/scenario-comparison-view";
 import KaizenLogView from "@/components/kaizen-log-view";
 
-export type View = "dashboard" | "plans" | "risk-templates" | "scenario-comparison" | "kaizen-log";
+export type View = "dashboard" | "scenarios" | "risk-templates" | "scenario-comparison" | "kaizen-log";
 
 export const viewTitles: Record<View, string> = {
   dashboard: "Dashboard",
-  plans: "Sprint Plans",
+  scenarios: "Sprint Scenarios",
   "risk-templates": "Risk Templates",
   "scenario-comparison": "Scenario Comparison",
   "kaizen-log": "Kaizen Log",
@@ -22,7 +22,7 @@ export const viewTitles: Record<View, string> = {
 
 const viewComponents: Record<View, React.ComponentType> = {
   dashboard: DashboardView,
-  plans: PlansView,
+  scenarios: ScenariosView,
   "risk-templates": RiskTemplatesView,
   "scenario-comparison": ScenarioComparisonView,
   "kaizen-log": KaizenLogView,

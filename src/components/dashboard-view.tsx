@@ -24,7 +24,7 @@ import {
   ChartTooltipContent,
   ChartConfig,
 } from '@/components/ui/chart';
-import { plans, allTasks } from '@/app/lib/mock-data';
+import { scenarios, allTasks } from '@/app/lib/mock-data';
 
 const chartData = [
   { sprint: 'Sprint 40', sp: 45 },
@@ -42,9 +42,9 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function DashboardView() {
-  const currentPlan = plans[1]; // Plan B
+  const currentScenario = scenarios[1]; // Scenario B
   const criticalRisksCount = allTasks.reduce((acc, task) => {
-    if (currentPlan.includedTasks.includes(task.id)) {
+    if (currentScenario.includedTasks.includes(task.id)) {
       return acc + task.risks.filter(r => r.priority === 'Critical').length;
     }
     return acc;
@@ -54,13 +54,13 @@ export default function DashboardView() {
     <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Active Plan</CardTitle>
+          <CardTitle className="text-sm font-medium">Active Scenario</CardTitle>
           <Star className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{currentPlan.name}</div>
+          <div className="text-2xl font-bold">{currentScenario.name}</div>
           <p className="text-xs text-muted-foreground">
-            {currentPlan.includedTasks.length} tasks included
+            {currentScenario.includedTasks.length} tasks included
           </p>
         </CardContent>
       </Card>
@@ -71,7 +71,7 @@ export default function DashboardView() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">
-            {currentPlan.includedTasks.reduce(
+            {currentScenario.includedTasks.reduce(
               (acc, taskId) =>
                 acc + (allTasks.find(t => t.id === taskId)?.sp || 0),
               0
@@ -87,10 +87,10 @@ export default function DashboardView() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">
-            {currentPlan.excludedTasks.length}
+            {currentScenario.excludedTasks.length}
           </div>
           <p className="text-xs text-muted-foreground">
-            {currentPlan.excludedTasks
+            {currentScenario.excludedTasks
               .reduce(
                 (acc, taskId) =>
                   acc + (allTasks.find(t => t.id === taskId)?.sp || 0),
@@ -114,7 +114,7 @@ export default function DashboardView() {
         <CardHeader>
           <CardTitle>Recent Tasks</CardTitle>
           <CardDescription>
-            A look at recently updated tasks in the active plan.
+            A look at recently updated tasks in the active scenario.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -128,7 +128,7 @@ export default function DashboardView() {
             </TableHeader>
             <TableBody>
               {allTasks
-                .filter(t => currentPlan.includedTasks.includes(t.id))
+                .filter(t => currentScenario.includedTasks.includes(t.id))
                 .slice(0, 5)
                 .map(task => (
                   <TableRow key={task.id}>

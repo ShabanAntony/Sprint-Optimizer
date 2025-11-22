@@ -48,12 +48,12 @@ export default function SidebarNav({ activeView, setActiveView }: SidebarNavProp
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton
-              onClick={() => setActiveView('plans')}
-              isActive={activeView === 'plans'}
-              tooltip="Sprint Plans"
+              onClick={() => setActiveView('scenarios')}
+              isActive={activeView === 'scenarios'}
+              tooltip="Sprint Scenarios"
             >
               <ClipboardList />
-              <span className="group-data-[collapsible=icon]:hidden">Sprint Plans</span>
+              <span className="group-data-[collapsible=icon]:hidden">Sprint Scenarios</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>

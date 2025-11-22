@@ -41,7 +41,7 @@ const RiskItem = ({ risk }: { risk: Risk }) => (
       <div className="mt-2 flex items-center gap-2 text-xs">
         <Badge variant="secondary">P: {risk.probability}</Badge>
         <Badge variant="secondary">I: {risk.impact}</Badge>
-        {risk.fallbackPlan && <Badge variant="outline">Fallback: {risk.fallbackPlan}</Badge>}
+        {risk.fallbackScenario && <Badge variant="outline">Fallback: {risk.fallbackScenario}</Badge>}
       </div>
     </div>
     <Button variant="ghost" size="icon" className="h-7 w-7">
@@ -69,7 +69,7 @@ export default function RiskCaptureSheet({
             <span className="text-muted-foreground">{task.id}:</span> {task.title}
           </SheetTitle>
           <SheetDescription>
-            Manage potential risks for this task. Risks help in creating robust fallback plans.
+            Manage potential risks for this task. Risks help in creating robust fallback scenarios.
           </SheetDescription>
         </SheetHeader>
         

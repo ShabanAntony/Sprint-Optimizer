@@ -22,7 +22,7 @@ import { comparisonData } from '@/app/lib/mock-data';
 
 export default function ScenarioComparisonView() {
   const [showOnlyDiffs, setShowOnlyDiffs] = useState(false);
-  const planNames = Object.keys(comparisonData.plans);
+  const scenarioNames = Object.keys(comparisonData.scenarios);
 
   return (
     <Card>
@@ -31,7 +31,7 @@ export default function ScenarioComparisonView() {
           <div>
             <CardTitle>Scenario Comparison</CardTitle>
             <CardDescription>
-              Compare your sprint plans to make an informed decision.
+              Compare your sprint scenarios to make an informed decision.
             </CardDescription>
           </div>
           <div className="flex items-center space-x-2">
@@ -49,7 +49,7 @@ export default function ScenarioComparisonView() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[200px]">Metric</TableHead>
-              {planNames.map(name => (
+              {scenarioNames.map(name => (
                 <TableHead key={name} className="text-right">
                   {name}
                 </TableHead>
@@ -58,8 +58,8 @@ export default function ScenarioComparisonView() {
           </TableHeader>
           <TableBody>
             {comparisonData.metrics.map(metric => {
-              const values = planNames.map(
-                name => comparisonData.plans[name as keyof typeof comparisonData.plans][metric as keyof typeof comparisonData.plans['Plan A']]
+              const values = scenarioNames.map(
+                name => comparisonData.scenarios[name as keyof typeof comparisonData.scenarios][metric as keyof typeof comparisonData.scenarios['Scenario A']]
               );
               const isDifferent = new Set(values).size > 1;
 
@@ -68,9 +68,9 @@ export default function ScenarioComparisonView() {
               return (
                 <TableRow key={metric}>
                   <TableCell className="font-medium">{metric}</TableCell>
-                  {planNames.map(name => (
+                  {scenarioNames.map(name => (
                     <TableCell key={name} className="text-right">
-                      {comparisonData.plans[name as keyof typeof comparisonData.plans][metric as keyof typeof comparisonData.plans['Plan A']].toString()}
+                      {comparisonData.scenarios[name as keyof typeof comparisonData.scenarios][metric as keyof typeof comparisonData.scenarios['Scenario A']].toString()}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -78,9 +78,9 @@ export default function ScenarioComparisonView() {
             })}
              <TableRow>
               <TableCell className="font-medium">Excluded Issues</TableCell>
-              {planNames.map(name => (
+              {scenarioNames.map(name => (
                 <TableCell key={name} className="text-right text-xs text-muted-foreground">
-                  {comparisonData.plans[name as keyof typeof comparisonData.plans]['Excluded issues'].join(', ') || 'None'}
+                  {comparisonData.scenarios[name as keyof typeof comparisonData.scenarios]['Excluded issues'].join(', ') || 'None'}
                 </TableCell>
               ))}
             </TableRow>
